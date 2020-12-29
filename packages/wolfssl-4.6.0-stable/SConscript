@@ -1,0 +1,16 @@
+
+from building import *
+import rtconfig
+
+cwd     = GetCurrentDir()
+src     = Glob('wolfcrypt/src/*.c')
+src     += Glob('wolfcrypt/benchmark/*.c')
+src     += Glob('wolfcrypt/test/*.c')
+src     += Glob('src/*.c')
+CPPPATH = [cwd,cwd + '/wolfssl']
+LOCAL_CCFLAGS = ''
+
+
+group = DefineGroup('wolfssl', src, depend = [''], CPPPATH = CPPPATH, LOCAL_CCFLAGS = LOCAL_CCFLAGS)
+
+Return('group')

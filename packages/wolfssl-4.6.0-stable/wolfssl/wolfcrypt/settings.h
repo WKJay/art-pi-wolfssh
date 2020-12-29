@@ -218,6 +218,7 @@
 /* Uncomment next line if building for Linux Kernel Module */
 /* #define WOLFSSL_LINUXKM */
 
+#define WOLFSSL_USER_SETTINGS
 
 #include <wolfssl/wolfcrypt/visibility.h>
 

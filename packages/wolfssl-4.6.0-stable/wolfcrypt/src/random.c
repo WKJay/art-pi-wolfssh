@@ -2552,7 +2552,7 @@ int wc_GenerateSeed(OS_Seed* os, byte* output, word32 sz)
 
 #elif defined(NO_DEV_RANDOM)
 
-    #error "you need to write an os specific wc_GenerateSeed() here"
+    //#error "you need to write an os specific wc_GenerateSeed() here"
 
     /*
     int wc_GenerateSeed(OS_Seed* os, byte* output, word32 sz)
