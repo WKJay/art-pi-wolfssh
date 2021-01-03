@@ -35,3 +35,5 @@ DebugConfig/
 RTE/
 settings/
 *.uvguix*
+board/CubeMX_Config/Drivers
+board/CubeMX_Config/MDK-ARM

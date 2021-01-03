@@ -182,6 +182,12 @@ menu "On-chip Peripheral"
                 default n
         endif	
 
+    config BSP_USING_RNG
+        bool "Enable RNG"
+        select RT_HWCRYPTO_USING_RNG
+        select RT_USING_HWCRYPTO
+        default n
+
 endmenu
 
 endmenu

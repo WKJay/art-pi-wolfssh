@@ -15,7 +15,7 @@
 
 int wolfssl_test(void) {
 #if !defined(NO_CRYPT_TEST)
-    wolfcrypt_test(NULL);
+    //wolfcrypt_test(NULL);
 #endif
 #if !defined(NO_CRYPT_BENCHMARK)
     benchmark_test(NULL);

@@ -1617,6 +1617,33 @@ static int wc_GenerateRand_IntelRD(OS_Seed* os, byte* output, word32 sz)
         return 0;
     }
 
+#elif defined(RT_HWCRYPTO_USING_RNG)
+#include <hw_rng.h>
+int wc_GenerateSeed(OS_Seed *os, byte *output, word32 sz)
+{
+    word32 i = 0;
+
+    (void)os;
+
+    while (i < sz)
+    {
+        /* If not aligned or there is odd/remainder */
+        if ((i + sizeof(CUSTOM_RAND_TYPE)) > sz ||
+            ((wolfssl_word)&output[i] % sizeof(CUSTOM_RAND_TYPE)) != 0)
+        {
+            /* Single byte at a time */
+            output[i++] = (byte)rt_hwcrypto_rng_update();
+        }
+        else
+        {
+            /* Use native 8, 16, 32 or 64 copy instruction */
+            *((CUSTOM_RAND_TYPE *)&output[i]) = rt_hwcrypto_rng_update();
+            i += sizeof(CUSTOM_RAND_TYPE);
+        }
+    }
+    return 0;
+}
+
 #elif defined(WOLFSSL_SGX)
 
 int wc_GenerateSeed(OS_Seed* os, byte* output, word32 sz)
